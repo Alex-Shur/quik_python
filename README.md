@@ -1,4 +1,13 @@
+<div align="center">
+
 # quik_python  
+
+[![PyPi Release](https://img.shields.io/pypi/v/quik_python?color=32a852&label=PyPi)](https://pypi.org/project/quik_python/)
+[![Total downloads](https://img.shields.io/pepy/dt/quik_python?label=%E2%88%91&color=skyblue)](https://pypistats.org/packages/quik_python)
+[![Made with Python](https://img.shields.io/badge/Python-3.11+-c7a002?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
+[![License](https://img.shields.io/github/license/Alex-Shur/quik_python?color=9c2400)](https://github.com/Alex-Shur/quik_python/blob/master/LICENSE)
+
+
 
 **QUIK Python** представляет все функции и события, доступные в QLUA, 
 в виде асинхронных функций Python и событий. 
