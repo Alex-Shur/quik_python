@@ -45,7 +45,7 @@ https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist?view=msvc-170
     Данные порты используются по умолчанию для связи библиотеки с терминалом.
 4. Проверьте настройки что соединения не блокируются в Windows Firewall. 
 
-```
+```python
 import logging
 import asyncio
 # from email import message
