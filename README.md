@@ -48,7 +48,6 @@ https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist?view=msvc-170
 ```python
 import logging
 import asyncio
-# from email import message
 from quik_python import Quik, LuaException
 from quik_python.data_structures import CandleInterval, Candle, InfoParams
 
