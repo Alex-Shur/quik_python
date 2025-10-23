@@ -167,6 +167,10 @@ if __name__ == "__main__":
 ```
 
 
+- приложение "QuikPythonDemo" из папки \\Examples
+![chart1](https://raw.githubusercontent.com/Alex-Shur/quik_python/refs/heads/main/Examples/QuikPythonDemo/quik_demo.PNG)
+
+
 
 Решение проблем
 ---------------
