@@ -14,6 +14,27 @@ Lua скрипты из состава библиотеки позволяют �
 https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist?view=msvc-170#latest-supported-redistributable-version
 для [CPU X64] https://aka.ms/vs/17/release/vc_redist.x64.exe
 
+Дополнение:
+Добавлена Lua socket  **core.dll**  для Lua 5.4.1 MT (static library), скомпилирована из Lua socket 3.1.0
+Для компилирования использовались файла от Lua 5.4.2, успешно протестировано в QUIK Junior 12.6.0.53 .
+Если хотите использовать Lua 5.4.1 в QUIK, надо отредактировать файл QuikShart.lua
+```
+        local linkage = "MT"
+    
+	if quikVersion >= 811 then
+            libPath = libPath .. "64\\54_"..linkage.."\\"
+	elseif quikVersion >= 805 then
+            libPath = libPath .. "64\\53_"..linkage.."\\"
+	elseif quikVersion >= 800 then
+            libPath = libPath .. "64\\5.1_"..linkage.."\\"
+	else
+            libPath = "\\clibs\\5.1_"..linkage.."\\"
+	end
+
+```
+
+
+
 
 Все!
 

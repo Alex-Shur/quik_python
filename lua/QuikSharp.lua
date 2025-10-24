@@ -34,15 +34,15 @@ if is_quik() then
     -- MT static, MSVCRT is linked statically with luasocket
     -- package.cpath contains info.exe working directory, which has MSVCRT, so MT should not be needed in theory, 
     -- but in one issue someone said it doesn't work on machines that do not have Visual Studio. 
-    local linkage = "MD"
+         local linkage = "MT"
     
 	--if quikVersion >= 811 then
     --    libPath = libPath .. "64\\54_MD\\"
 	--elseif quikVersion >= 805 then
 	if quikVersion >= 805 then
-        libPath = libPath .. "64\\53_"..linkage.."\\"
+                libPath = libPath .. "64\\53_"..linkage.."\\"
 	elseif quikVersion >= 800 then
-        libPath = libPath .. "64\\5.1_"..linkage.."\\"
+                libPath = libPath .. "64\\5.1_"..linkage.."\\"
 	else
 		libPath = "\\clibs\\5.1_"..linkage.."\\"
 	end
