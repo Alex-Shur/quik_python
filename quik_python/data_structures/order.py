@@ -127,7 +127,7 @@ class Order(BaseDataStructure):
     exchange_code: Optional[str] = None
     
     # Время активации
-    activation_time: Optional[Decimal] = None
+    activation_time: Optional[int] = None
     
     # Номер заявки в торговой системе
     linked_order: Optional[int] = None
@@ -382,7 +382,7 @@ class Order(BaseDataStructure):
             uid=data.get('uid'),
             canceled_uid=data.get('canceled_uid'),
             exchange_code=data.get('exchange_code'),
-            activation_time=Decimal(str(data.get('activation_time'))) if data.get('activation_time') is not None else None,
+            activation_time=data.get('activation_time'),
             linked_order=data.get('linkedorder'),
             expiry=Decimal(str(data.get('expiry'))) if data.get('expiry') is not None else None,
             sec_code=data.get('sec_code'),
@@ -448,7 +448,7 @@ class Order(BaseDataStructure):
             'uid': self.uid,
             'canceled_uid': self.canceled_uid,
             'exchange_code': self.exchange_code,
-            'activation_time': float(self.activation_time) if self.activation_time is not None else None,
+            'activation_time': self.activation_time,
             'linkedorder': self.linked_order,
             'expiry': float(self.expiry) if self.expiry is not None else None,
             'sec_code': self.sec_code,
