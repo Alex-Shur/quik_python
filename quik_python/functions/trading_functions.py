@@ -407,7 +407,7 @@ class TradingFunctions(BaseFunctions):
 
     async def get_trd_acc_by_client_code(self, firm_id: str, client_code: str) -> Optional[str]:
         """
-        Функция для получения торгового счета по коду клиента
+        Функция возвращает торговый счет срочного рынка, соответствующий коду клиента фондового рынка с единой денежной позицией
 
         Args:
             firm_id: Идентификатор фирмы
@@ -422,7 +422,7 @@ class TradingFunctions(BaseFunctions):
 
     async def get_client_code_by_trd_acc(self, firm_id: str, trd_acc_id: str) -> Optional[str]:
         """
-        Функция для получения кода клиента по торговому счету
+        Функция возвращает код клиента фондового рынка с единой денежной позицией, соответствующий торговому счету срочного рынка
 
         Args:
             firm_id: Идентификатор фирмы
@@ -431,7 +431,7 @@ class TradingFunctions(BaseFunctions):
         Returns:
             Код клиента
         """
-        result = await self.call_function("getClientCodeByTrdAcc", firm_id, trd_acc_id)
+        result = await self.call_function("GetClientCodeByTrdAcc", firm_id, trd_acc_id)
         return result.get('data') if result else None
 
 
@@ -490,14 +490,13 @@ class TradingFunctions(BaseFunctions):
         Returns:
             TRANS_ID транзакции (положительный при успехе, отрицательный при ошибке)
         """
-        # Убедимся, что TRANS_ID не задан заранее
-        if transaction.TRANS_ID is not None:
-            raise ValueError("TRANS_ID should be assigned automatically in send_transaction")
-
-        # Получаем уникальный ID транзакции
         import time
         trans_id = int(time.time() * 1000) % 100000000  # time in milliseconds
-        transaction.TRANS_ID = trans_id
+
+        if transaction.TRANS_ID is None:
+            transaction.TRANS_ID = trans_id
+        else:
+            trans_id = transaction.TRANS_ID
 
         # Устанавливаем CLIENT_CODE если не задан
         if transaction.CLIENT_CODE is None:
@@ -518,7 +517,7 @@ class TradingFunctions(BaseFunctions):
         except Exception as e:
             # В случае ошибки возвращаем отрицательный ID
             self.logger.error(f"Error sending transaction: {e}")
-            transaction.ErrorMessage = str(e)
+            transaction.error_message = str(e)
             return -trans_id
 
 
