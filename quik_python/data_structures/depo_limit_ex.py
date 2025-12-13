@@ -93,6 +93,14 @@ class DepoLimitEx(BaseDataStructure):
         Returns:
             DepoLimitEx instance
         """
+        limit_kind = LimitKind.T0
+        limit = data.get('limit_kind')
+        if limit:
+            if limit in LimitKind._value2member_map_:
+                limit_kind = LimitKind(limit)
+            else:
+                limit_kind = LimitKind.NOT_IMPLEMENTED
+
         rc = cls(
             sec_code=data.get('sec_code'),
             trd_acc_id=data.get('trdaccid'),
@@ -109,11 +117,8 @@ class DepoLimitEx(BaseDataStructure):
             awg_position_price=data.get('awg_position_price'),
             wa_position_price=data.get('wa_position_price'),
             wa_price_currency=data.get('wa_price_currency'),
+            limit_kind=limit_kind
         )
-        try:
-          rc.limit_kind = LimitKind(data.get('limit_kind')) if data.get('limit_kind') is not None else LimitKind.T0
-        except (ValueError, KeyError):
-          rc.limit_kind = LimitKind.NOT_IMPLEMENTED
         return rc
     
     def to_dict(self) -> dict:

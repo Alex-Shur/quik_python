@@ -79,6 +79,14 @@ class MoneyLimitEx(BaseDataStructure):
         Returns:
             MoneyLimitEx instance
         """
+        limit_kind = LimitKind.T0
+        limit = data.get('limit_kind')
+        if limit:
+            if limit in LimitKind._value2member_map_:
+                limit_kind = LimitKind(limit)
+            else:
+                limit_kind = LimitKind.NOT_IMPLEMENTED
+
         return cls(
             curr_code=data.get('currcode'),
             tag=data.get('tag'),
@@ -92,7 +100,7 @@ class MoneyLimitEx(BaseDataStructure):
             locked_value_coef=data.get('locked_value_coef'),
             locked_margin_value=data.get('locked_margin_value'),
             leverage=data.get('leverage'),
-            limit_kind=LimitKind(data.get('limit_kind')) if data.get('limit_kind') is not None else LimitKind.T0,
+            limit_kind=limit_kind,
             wa_position_price=data.get('wa_position_price'),
             orders_collateral=data.get('orders_collateral'),
             positions_collateral=data.get('positions_collateral')

@@ -44,12 +44,20 @@ class DepoLimitDelete(BaseDataStructure):
         Returns:
             DepoLimitDelete instance
         """
+        limit_kind = LimitKind.T0
+        limit = data.get('limit_kind')
+        if limit:
+            if limit in LimitKind._value2member_map_:
+                limit_kind = LimitKind(limit)
+            else:
+                limit_kind = LimitKind.NOT_IMPLEMENTED
+
         return cls(
             sec_code=data.get('sec_code'),
             trd_acc_id=data.get('trdaccid'),
             firm_id=data.get('firmid'),
             client_code=data.get('client_code'),
-            limit_kind=LimitKind(data.get('limit_kind')) if data.get('limit_kind') is not None else None
+            limit_kind=limit_kind
         )
     
     def to_dict(self) -> dict:

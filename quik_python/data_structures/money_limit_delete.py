@@ -45,12 +45,20 @@ class MoneyLimitDelete(BaseDataStructure):
         Returns:
             MoneyLimitDelete instance
         """
+        limit_kind = LimitKind.T0
+        limit = data.get('limit_kind')
+        if limit:
+            if limit in LimitKind._value2member_map_:
+                limit_kind = LimitKind(limit)
+            else:
+                limit_kind = LimitKind.NOT_IMPLEMENTED
+
         return cls(
             curr_code=data.get('currcode'),
             tag=data.get('tag'),
             client_code=data.get('client_code'),
             firm_id=data.get('firmid'),
-            limit_kind=LimitKind(data.get('limit_kind')) if data.get('limit_kind') is not None else LimitKind.T0
+            limit_kind=limit_kind
         )
     
     def to_dict(self) -> dict:
