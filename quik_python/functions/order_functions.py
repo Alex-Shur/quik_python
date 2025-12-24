@@ -118,7 +118,6 @@ class OrderFunctions(BaseFunctions):
             try:
                 res = await self._quik.trading.send_transaction(new_order_transaction)
                 await asyncio.sleep(0.5)  # Ждем 500ms как в оригинальном коде
-                ##?? print(f"res: {res}")
             except Exception:
                 # ignore - как в оригинальном коде
                 pass

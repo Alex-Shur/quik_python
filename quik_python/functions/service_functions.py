@@ -203,14 +203,3 @@ class ServiceFunctions(BaseFunctions):
         """
         result = await self.call_function("delAllLabels", tag)
         return result['data'] or False
-
-
-    # def initialize_correlation_id(self, start_correlation_id: int) -> None:
-    #     """Инициализировать идентификатор корреляции.
-
-    #     Args:
-    #         start_correlation_id (int): Начальный идентификатор корреляции.
-    #     """
-    #     self.service.initialize_correlation_id(start_correlation_id)
-    
-

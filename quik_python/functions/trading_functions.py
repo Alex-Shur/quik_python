@@ -446,7 +446,7 @@ class TradingFunctions(BaseFunctions):
         Returns:
             True, если клиент является единым клиентом
         """
-        result = await self.call_function("isUcpClient", firm_id, client)
+        result = await self.call_function("IsUcpClient", firm_id, client)
         return result.get('data', False) if result else False
 
 
